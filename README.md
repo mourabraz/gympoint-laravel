@@ -24,8 +24,6 @@ Gynpoint é um aplicativo de gerenciamento de uma academia, com as seguintes car
 
 ## Rotas
 
-Junto segue o arquivo ([Insominia_2020-01-03.json](./Insominia_2020-01-03.json)) para importar as rotas para o [Insomnia](https://insomnia.rest/)
-
 | Método | Rota                                  | Privado |                                                                                                       |
 | :----: | :------------------------------------ | :-----: | ----------------------------------------------------------------------------------------------------- |
 |  POST  | /sessions                             |   NÃO   | autenticação de usuário (administrador)                                                               |
