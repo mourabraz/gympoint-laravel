@@ -1,61 +1,65 @@
-<p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
+<h1 align="center">
+  <img alt="Gympoint" title="Gympoint" src=".github/logo.png" width="200px" />
+</h1>
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+<h3 align="center">
+  Gympoint
+</h3>
 
-## About Laravel
+# Aplicação: Um monorepo do Gympoint com Laravel 7.x
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Gynpoint é um aplicativo de gerenciamento de uma academia, com as seguintes características:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+1. Os Administradores devem ser autenticar;
+2. Um administrador pode cadastrar alunos, planos, matrículas e responder a questões dos alunos.
+3. Os administradores tem acesso ao sistema pela web.
+4. Sempre que uma matrícula é realizada um e-mail é enviado ao aluno com uma mensagem de boas vindas.
+5. Sempre que uma resposta for dada à pergunta de um aluno o mesmo recebe um e-mail com a pergunta e a resposta.
+   (6. Os alunos, por meio do aplicativo _mobile_ podem realizar o _checkin_ e enviar perguntas aos administradores.)
+6. EXTRA: os administradores podem visualizar a quantidade de entradas dos alunos nos últimos 84 dias, bem como o gráfico dos horários mais utilizados. Uma lista com os aniversariantes dos próximos 30 dias pode ser obtida pelos administradores. Uma lista com alunos sem matrícula ativa também está disponível.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Instalação e Inicialização
 
-## Learning Laravel
+## Seeds
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Rotas
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Junto segue o arquivo ([Insominia_2020-01-03.json](./Insominia_2020-01-03.json)) para importar as rotas para o [Insomnia](https://insomnia.rest/)
 
-## Laravel Sponsors
+| Método | Rota                                  | Privado |                                                                                                       |
+| :----: | :------------------------------------ | :-----: | ----------------------------------------------------------------------------------------------------- |
+|  POST  | /sessions                             |   NÃO   | autenticação de usuário (administrador)                                                               |
+|  GET   | /students/:student_id/checkins        |   NÃO   | lista as entradas de determinado aluno                                                                |
+|  POST  | /students/:student_id/checkins        |   NÃO   | realiza a entrada de um aluno                                                                         |
+|  GET   | /students/:student_id/help-orders     |   NÃO   | lista os pedido de ajuda criados por um aluno                                                         |
+|  POST  | /students/:student_id/help-orders     |   NÃO   | cria um pedido de ajuda para um aluno                                                                 |
+|  GET   | /dashboard/checkins/day               |   SIM   | lista a quantidade de entradas por dia nos últimos 84 dias (por default), ou pelo período solicitado  |
+|  GET   | /dashboard/checkins/hour              |   SIM   | lista a quantidade de entradas por hora nos últimos 84 dias (por default), ou pelo período solicitado |
+|  GET   | /dashboard/checkins/birthdays         |   SIM   | lista os aniversariantes (alunos) dos próximos 30 dias (por default)                                  |
+|  GET   | /report/students/without/registration |   SIM   | lista de alunos que não possuam uma matrícula ativa                                                   |
+|  GET   | /students                             |   SIM   | lista de alunos                                                                                       |
+|  POST  | /students                             |   SIM   | cadastro de um aluno                                                                                  |
+|  PUT   | /students/:id                         |   SIM   | atualização de um determinado aluno                                                                   |
+| DELETE | /students/:id                         |   SIM   | exclui um determinado aluno                                                                           |
+|  GET   | /plans                                |   SIM   | lista de planos                                                                                       |
+|  POST  | /plans                                |   SIM   | cadastro de um plano                                                                                  |
+|  PUT   | /plans/:id                            |   SIM   | atualização de um determinado plano                                                                   |
+| DELETE | /plans/:id                            |   SIM   | exclui um determinado plano                                                                           |
+|  GET   | /registrations                        |   SIM   | lista de matrículas                                                                                   |
+|  POST  | /registrations                        |   SIM   | cadastro de uma matrícula                                                                             |
+|  PUT   | /registrations/:id                    |   SIM   | atualização de uma determinada matrícula                                                              |
+| DELETE | /registrations/:id                    |   SIM   | exclui uma determinada matrícula                                                                      |
+|  GET   | /help-orders                          |   SIM   | lista de pedidos de auxílio                                                                           |
+|  POST  | /help-orders/:help_order_id/answer    |   SIM   | cadastro a resposta a um determinado pedido de auxílio                                                |
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+## Testes
 
-### Premium Partners
+## Agradecimentos
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[OP.GG](https://op.gg)**
+Aos desenvolvedores e mantenedores das seguintes bibliotecas/frameworks:
 
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+-   [Laravel](https://laravel.com/);
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+MIT © mourabraz@hotmail.com
