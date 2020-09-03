@@ -18,8 +18,8 @@ class CreateStudentsTable extends Migration
             $table->foreignId('user_id')
                 ->references('id')
                 ->on('users');
-            $table->decimal('weight', 3, 2);
-            $table->decimal('height', 2, 2);
+            $table->decimal('weight', 5, 2);
+            $table->decimal('height', 4, 2);
             $table->timestampTz('birthday_at');
             $table->timestampsTz();
         });
