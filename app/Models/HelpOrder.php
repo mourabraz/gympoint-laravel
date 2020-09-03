@@ -11,7 +11,7 @@ class HelpOrder extends Model
     ];
 
     protected $casts = [
-        //'answer_at' => 'datetime',
+        'answer_at' => 'datetime',
     ];
 
     public function student()

@@ -11,7 +11,7 @@ class Student extends Model
     ];
 
     protected $casts = [
-        //'birthday_at' => 'datetime',
+        'birthday_at' => 'datetime',
     ];
 
     public function user()
