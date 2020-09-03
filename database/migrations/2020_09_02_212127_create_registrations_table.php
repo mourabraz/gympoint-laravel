@@ -16,8 +16,10 @@ class CreateRegistrationsTable extends Migration
         Schema::create('registrations', function (Blueprint $table) {
             $table->id();
             $table->foreignId('student_id')
+                ->nullable()
                 ->references('id')
-                ->on('students');
+                ->on('students')
+                ->onDelete('SET NULL');
             $table->foreignId('plan_id')
                 ->nullable()
                 ->references('id')
