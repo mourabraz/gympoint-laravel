@@ -20,8 +20,8 @@ class CreateHelpOrdersTable extends Migration
                 ->on('students');
             $table->text('question');
             $table->text('answer');
-            $table->timestampTz('answer_at');
-            $table->timestampsTz();
+            $table->timestamp('answer_at');
+            $table->timestamps();
         });
     }
 

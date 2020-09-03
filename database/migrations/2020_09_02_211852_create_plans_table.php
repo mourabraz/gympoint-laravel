@@ -18,7 +18,7 @@ class CreatePlansTable extends Migration
             $table->string('title')->unique();
             $table->integer('duration');
             $table->decimal('price', 10, 2);
-            $table->timestampsTz();
+            $table->timestamps();
         });
     }
 

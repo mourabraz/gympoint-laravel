@@ -20,8 +20,8 @@ class CreateStudentsTable extends Migration
                 ->on('users');
             $table->decimal('weight', 5, 2);
             $table->decimal('height', 4, 2);
-            $table->timestampTz('birthday_at');
-            $table->timestampsTz();
+            $table->timestamp('birthday_at');
+            $table->timestamps();
         });
     }
 

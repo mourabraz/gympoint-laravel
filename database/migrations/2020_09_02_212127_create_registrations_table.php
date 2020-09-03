@@ -26,9 +26,9 @@ class CreateRegistrationsTable extends Migration
                 ->on('plans')
                 ->onDelete('SET NULL');
             $table->decimal('price', 10, 2);
-            $table->timestampTz('start_at');
-            $table->timestampTz('end_at');
-            $table->timestampsTz();
+            $table->timestamp('start_at');
+            $table->timestamp('end_at');
+            $table->timestamps();
         });
     }
 

@@ -18,7 +18,7 @@ class CreateCheckinsTable extends Migration
             $table->foreignId('student_id')
                 ->references('id')
                 ->on('students');
-            $table->timestampsTz();
+            $table->timestamps();
         });
     }
 
