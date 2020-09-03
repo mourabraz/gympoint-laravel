@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+use App\User;
+
 class Student extends Model
 {
     protected $fillable = [
@@ -16,7 +18,8 @@ class Student extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class)
+            ->where('role', 'student');
     }
 
     public function registrations()
