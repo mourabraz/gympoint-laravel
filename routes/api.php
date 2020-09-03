@@ -17,11 +17,3 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-
-Route::group(['namespace' => 'Api', 'middleware' => 'auth:api'], function () {
-    Route::apiResource('students', 'StudentController');
-    Route::apiResource('plans', 'PlanController');
-    Route::apiResource('registrations', 'RegistrationController');
-    Route::apiResource('checkins', 'CheckinController');
-    Route::apiResource('help_orders', 'HelpOrderController');
-});
