@@ -21,10 +21,10 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::group(['middleware' => 'auth'], function () {
-    Route::apiResource('students', 'StudentController');
-    Route::apiResource('plans', 'PlanController');
-    Route::apiResource('registrations', 'RegistrationController');
-    Route::apiResource('checkins', 'CheckinController');
-    Route::apiResource('help_orders', 'HelpOrderController');
+Route::group(['middleware' => ['auth', 'admin']], function () {
+    Route::resource('students', 'StudentController');
+    Route::resource('plans', 'PlanController');
+    Route::resource('registrations', 'RegistrationController');
+    Route::resource('checkins', 'CheckinController');
+    Route::resource('help_orders', 'HelpOrderController');
 });
