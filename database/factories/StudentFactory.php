@@ -14,6 +14,6 @@ $factory->define(Student::class, function (Faker $faker) {
         },
         'weight' => $faker->randomFloat(2, 25, 120),
         'height' => $faker->randomFloat(2, 1.15, 2.20),
-        'birthday_at' => $faker->dateTimeBetween('-50 years', 'now', null)
+        'birthday_at' => $faker->dateTimeBetween('-50 years', '-10 years', null)
     ];
 });
