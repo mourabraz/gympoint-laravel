@@ -10904,3 +10904,7 @@ a.text-dark:focus {
   }
 }
 
+.gp-navbar {
+  text-transform: uppercase;
+}
+
