@@ -11,12 +11,14 @@ class StudentController extends Controller
     {
         $students = Student::with('user')->latest()->get();
 
-        return $students;
+        return view('students.index', compact('students'));
     }
 
     public function show(Student $student)
     {
-        return $student;
+        $student = Student::with('user')->findOrFail($student->id);
+
+        return view('students.show', compact('student'));
     }
 
     public function create()

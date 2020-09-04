@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 use App\User;
+use Carbon\Carbon;
 
 class Student extends Model
 {
@@ -13,7 +14,7 @@ class Student extends Model
     ];
 
     protected $casts = [
-        'birthday_at' => 'datetime',
+        'birthday_at' => 'date',
     ];
 
     public function user()
@@ -35,5 +36,10 @@ class Student extends Model
     public function helpOrders()
     {
         return $this->hasMany(HelpOrder::class);
+    }
+
+    public function getAge()
+    {
+        return $this->birthday_at->diffInYears(Carbon::now());
     }
 }
