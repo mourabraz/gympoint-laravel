@@ -9,18 +9,12 @@
                 <strong>Gerenciando Alunos</strong>
             </h1>
         </div>
-        <div class="col-lg-4 col-md-5 mb-2 mb-md-0">
-            <form class="d-flex justify-content-space-between" action="#">
-                <button type="submit" class="btn btn-primary">
-                    Cadastrar
-                </button>
-                <input type="text"
-                        id="search"
-                        name="search"
-                        class="form-control ml-3"
-                        aria-describedby="searchHelp"
-                        placeholder="buscar aluno">
-            </form>
+        <div class="col-lg-4 col-md-5 mb-2 mb-md-0 d-flex justify-content-end">
+            <a href="/students/create"
+                class="btn btn-primary btn-sm active"
+                role="button">
+            Cadastrar
+            </a>
         </div>
     </div>
 
