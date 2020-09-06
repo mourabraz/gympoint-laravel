@@ -30,8 +30,6 @@ class StudentController extends Controller
 
     public function store(Request $request)
     {
-        //dd($request);
-
         $this->validate($request, [
             'email'       => 'required|unique:users,email',
             'name'        => 'required',
@@ -63,11 +61,34 @@ class StudentController extends Controller
 
     public function edit(Student $student)
     {
-        return $student;
+        $student = Student::with('user')->findOrFail($student->id);
+
+        return view('students.edit', compact('student'));
     }
 
     public function update(Student $student)
     {
-        return $student;
+        $this->validate(request(), [
+            'email'       => 'required|unique:users,email,' . $student->user_id,
+            'name'        => 'required',
+            'weight'      => 'required',
+            'height'      => 'required',
+            'birthday_at' => 'required',
+        ]);
+
+        $user = User::findOrFail($student->user_id);
+
+        $user->name = request('name');
+        $user->email = request('email');
+
+        if ($user->save()) {
+            $student->weight = request('weight');
+            $student->height = request('height');
+            $student->birthday_at = request('birthday_at');
+
+            $user->student()->save($student);
+        }
+
+        return redirect('/students/' . $student->id);
     }
 }

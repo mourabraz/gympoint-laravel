@@ -2075,6 +2075,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["student"],
   components: {},
@@ -59130,10 +59134,13 @@ var render = function() {
         _vm._v(" "),
         _c("div", [
           _c(
-            "button",
+            "a",
             {
               staticClass: "btn btn-outline-warning btn-sm",
-              attrs: { type: "button" }
+              attrs: {
+                href: "/students/" + _vm.student.id + "/edit",
+                role: "button"
+              }
             },
             [
               _c(
