@@ -22,7 +22,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['middleware' => ['auth', 'admin']], function () {
-    Route::resource('students', 'StudentController');
+    Route::resource('students', 'StudentController')->except(['destroy']);
     Route::resource('plans', 'PlanController');
     Route::resource('registrations', 'RegistrationController');
     Route::resource('checkins', 'CheckinController');
