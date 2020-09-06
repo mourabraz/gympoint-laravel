@@ -11,7 +11,7 @@ class StudentController extends Controller
 {
     public function index()
     {
-        $students = Student::with('user')->latest()->get();
+        $students = Student::with('user')->latest()->orderBy('id')->get();
 
         return view('students.index', compact('students'));
     }

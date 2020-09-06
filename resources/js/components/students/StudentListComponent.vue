@@ -6,7 +6,10 @@
                 :key="student.id"
                 class="card mb-2"
             >
-                <student-item-component :student="student" />
+                <student-item-component
+                    :student="student"
+                    @studentDeleted="studentDeleted"
+                />
             </div>
         </div>
     </div>
@@ -22,15 +25,32 @@ export default {
     },
     mounted() {
         let students = JSON.parse(this.list);
-        this.$data.students = students.map(s => ({
+        this.students = students.map(s => ({
             ...s,
-            age: 38
+            age: window.dateFns.differenceInYears(
+                new Date(),
+                window.dateFns.parseISO(s.birthday_at)
+            )
         }));
     },
     data() {
         return {
             students: []
         };
+    },
+    methods: {
+        studentDeleted(student) {
+            this.students = this.students.filter(s => s.id !== student.id);
+            Swal.fire({
+                title: "Excluído",
+                text: "O registro foi excluído com sucesso",
+                icon: "success",
+                showCancelButton: false,
+                confirmButtonColor: "#38c172",
+                confirmButtonText: "Ok!",
+                allowOutsideClick: false
+            });
+        }
     }
 };
 </script>

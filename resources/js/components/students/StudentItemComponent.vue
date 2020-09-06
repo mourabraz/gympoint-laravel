@@ -162,7 +162,6 @@ export default {
                         .then(res => {
                             if (res.status !== 204)
                                 throw new Error(res.statusText);
-
                             return res;
                         })
                         .catch(error => {
@@ -172,22 +171,11 @@ export default {
                         });
                 }
             }).then(result => {
-                this.removing = false;
-                if (result.value && result.value.status === 204) {
-                    swal({
-                        title: "Excluído",
-                        text: "O registro foi excluído com sucesso",
-                        type: "success",
-                        showCancelButton: false,
-                        confirmButtonColor: "#38c172",
-                        confirmButtonText: "Ok!",
-                        allowOutsideClick: false
-                    }).then(result => {
-                        if (result.value) {
-                            console.log(result);
-                        }
-                    });
+                if (result.value) {
+                    this.$emit("studentDeleted", this.student);
                 }
+
+                this.removing = false;
             });
         }
     }

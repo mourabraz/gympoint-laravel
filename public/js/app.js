@@ -2109,23 +2109,11 @@ __webpack_require__.r(__webpack_exports__);
           });
         }
       }).then(function (result) {
-        _this.removing = false;
-
-        if (result.value && result.value.status === 204) {
-          swal({
-            title: "Excluído",
-            text: "O registro foi excluído com sucesso",
-            type: "success",
-            showCancelButton: false,
-            confirmButtonColor: "#38c172",
-            confirmButtonText: "Ok!",
-            allowOutsideClick: false
-          }).then(function (result) {
-            if (result.value) {
-              console.log(result);
-            }
-          });
+        if (result.value) {
+          _this.$emit("studentDeleted", _this.student);
         }
+
+        _this.removing = false;
       });
     }
   }
@@ -2163,6 +2151,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["list"],
@@ -2171,9 +2162,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   mounted: function mounted() {
     var students = JSON.parse(this.list);
-    this.$data.students = students.map(function (s) {
+    this.students = students.map(function (s) {
       return _objectSpread(_objectSpread({}, s), {}, {
-        age: 38
+        age: window.dateFns.differenceInYears(new Date(), window.dateFns.parseISO(s.birthday_at))
       });
     });
   },
@@ -2181,6 +2172,22 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     return {
       students: []
     };
+  },
+  methods: {
+    studentDeleted: function studentDeleted(student) {
+      this.students = this.students.filter(function (s) {
+        return s.id !== student.id;
+      });
+      Swal.fire({
+        title: "Excluído",
+        text: "O registro foi excluído com sucesso",
+        icon: "success",
+        showCancelButton: false,
+        confirmButtonColor: "#38c172",
+        confirmButtonText: "Ok!",
+        allowOutsideClick: false
+      });
+    }
   }
 });
 
@@ -59339,7 +59346,12 @@ var render = function() {
         return _c(
           "div",
           { key: student.id, staticClass: "card mb-2" },
-          [_c("student-item-component", { attrs: { student: student } })],
+          [
+            _c("student-item-component", {
+              attrs: { student: student },
+              on: { studentDeleted: _vm.studentDeleted }
+            })
+          ],
           1
         )
       }),
