@@ -10,3 +10,15 @@
 .gp-navbar {
     text-transform: uppercase;
 }
+
+@keyframes spin_animation {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(359deg);
+    }
+}
+.spin {
+    animation: spin_animation 2s linear infinite;
+}

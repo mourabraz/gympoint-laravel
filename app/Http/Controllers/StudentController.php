@@ -70,9 +70,4 @@ class StudentController extends Controller
     {
         return $student;
     }
-
-    public function destroy(Student $student)
-    {
-        return $student;
-    }
 }

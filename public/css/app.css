@@ -10908,3 +10908,28 @@ a.text-dark:focus {
   text-transform: uppercase;
 }
 
+@-webkit-keyframes spin_animation {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(359deg);
+  }
+}
+
+@keyframes spin_animation {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(359deg);
+  }
+}
+
+.spin {
+  -webkit-animation: spin_animation 2s linear infinite;
+          animation: spin_animation 2s linear infinite;
+}
+

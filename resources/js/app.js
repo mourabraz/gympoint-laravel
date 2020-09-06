@@ -8,6 +8,7 @@ require("./bootstrap");
 
 window.Vue = require("vue");
 window.dateFns = require("date-fns");
+window.Swal = require("sweetalert2");
 
 window.Vue.filter("formatDate", value =>
     window.dateFns.format(window.dateFns.parseISO(value), "dd/MM/yyyy")
