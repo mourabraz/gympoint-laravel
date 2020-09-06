@@ -14,6 +14,7 @@
         "bootstrap": "^4.0.0",
         "bootstrap-icons": "^1.0.0",
         "cross-env": "^7.0",
+        "date-fns": "^2.16.1",
         "jquery": "^3.2",
         "laravel-mix": "^5.0.1",
         "lodash": "^4.17.19",
@@ -21,10 +22,9 @@
         "resolve-url-loader": "^2.3.1",
         "sass": "^1.20.1",
         "sass-loader": "^8.0.0",
+        "sweetalert2": "^9.17.2",
         "vue": "^2.5.17",
         "vue-template-compiler": "^2.6.10"
     },
-    "dependencies": {
-        "date-fns": "^2.16.1"
-    }
+    "dependencies": {}
 }
