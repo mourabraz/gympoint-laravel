@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use App\Providers\RouteServiceProvider;
 use Closure;
 use Illuminate\Support\Facades\Auth;
+//use Symfony\Component\HttpFoundation\Response;
 
 class AuthenticateAndAdmin
 {
@@ -21,6 +22,11 @@ class AuthenticateAndAdmin
         if (Auth::check() && Auth::user()->role === 'admin') {
             return $next($request);
         }
+
+        if ($request->expectsJson()) {
+            return response(['Unauthorized'], 401);
+        }
+
 
         return redirect('/');
     }
