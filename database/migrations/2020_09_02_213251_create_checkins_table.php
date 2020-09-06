@@ -16,8 +16,10 @@ class CreateCheckinsTable extends Migration
         Schema::create('checkins', function (Blueprint $table) {
             $table->id();
             $table->foreignId('student_id')
+                ->nullable()
                 ->references('id')
-                ->on('students');
+                ->on('students')
+                ->onDelete('SET NULL');
             $table->timestamps();
         });
     }

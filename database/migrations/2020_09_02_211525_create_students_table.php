@@ -17,7 +17,8 @@ class CreateStudentsTable extends Migration
             $table->id();
             $table->foreignId('user_id')
                 ->references('id')
-                ->on('users');
+                ->on('users')
+                ->onDelete('CASCADE');
             $table->decimal('weight', 5, 2);
             $table->decimal('height', 4, 2);
             $table->timestamp('birthday_at');

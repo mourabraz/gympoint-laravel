@@ -16,8 +16,10 @@ class CreateHelpOrdersTable extends Migration
         Schema::create('help_orders', function (Blueprint $table) {
             $table->id();
             $table->foreignId('student_id')
+                ->nullable()
                 ->references('id')
-                ->on('students');
+                ->on('students')
+                ->onDelete('SET NULL');
             $table->text('question');
             $table->text('answer');
             $table->timestamp('answer_at');
