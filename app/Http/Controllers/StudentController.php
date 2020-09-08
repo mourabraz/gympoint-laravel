@@ -31,11 +31,11 @@ class StudentController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'email'       => 'required|unique:users,email',
+            'email'       => 'required|email|unique:users,email',
             'name'        => 'required',
-            'weight'      => 'required',
-            'height'      => 'required',
-            'birthday_at' => 'required',
+            'weight'      => 'required|regex:/^\d{2,3}[\.,]\d{0,2}$/',
+            'height'      => 'required|regex:/^\d{1,2}[\.,]\d{0,2}$/',
+            'birthday_at' => 'required|regex:/^\d{2}\/\d{2}\/\d{4}$/',
         ]);
 
         $user = new User();
@@ -51,7 +51,9 @@ class StudentController extends Controller
             $student = new Student();
             $student->weight = $request->weight;
             $student->height = $request->height;
-            $student->birthday_at = $request->birthday_at;
+
+            $birthdayArray = explode('/', $request->birthday_at);
+            $student->birthday_at = $birthdayArray[2] . '-' . $birthdayArray[1] . '-' . $birthdayArray[0];
 
             $user->student()->save($student);
         }
@@ -69,11 +71,11 @@ class StudentController extends Controller
     public function update(Student $student)
     {
         $this->validate(request(), [
-            'email'       => 'required|unique:users,email,' . $student->user_id,
+            'email'       => 'required|email|unique:users,email,' . $student->user_id,
             'name'        => 'required',
-            'weight'      => 'required',
-            'height'      => 'required',
-            'birthday_at' => 'required',
+            'weight'      => 'required|regex:/^\d{2,3}[\.,]\d{0,2}$/',
+            'height'      => 'required|regex:/^\d{1,2}[\.,]\d{0,2}$/',
+            'birthday_at' => 'required|regex:/^\d{2}\/\d{2}\/\d{4}$/',
         ]);
 
         $user = User::findOrFail($student->user_id);
@@ -84,7 +86,9 @@ class StudentController extends Controller
         if ($user->save()) {
             $student->weight = request('weight');
             $student->height = request('height');
-            $student->birthday_at = request('birthday_at');
+
+            $birthdayArray = explode('/', request('birthday_at'));
+            $student->birthday_at = $birthdayArray[2] . '-' . $birthdayArray[1] . '-' . $birthdayArray[0];
 
             $user->student()->save($student);
         }
